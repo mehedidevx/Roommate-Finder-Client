@@ -1,0 +1,84 @@
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import { FiSun, FiSearch, FiHome } from 'react-icons/fi';
+import { Link } from 'react-router';
+
+const Banner = () => {
+const btns = [
+ <Link to="/browse"> <button  className="flex cursor-pointer items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded shadow hover:opacity-90 transition">
+    <FiSearch /> Explore Listings
+  </button></Link>,
+
+  <Link to="/add-listing"><button key="list" className="flex cursor-pointer items-center gap-2 border border-purple-400 text-purple-300 hover:text-white px-6 py-2 rounded hover:bg-purple-700 transition">
+    <FiHome /> List Your Space
+  </button></Link>
+];
+  return (
+    <div className="w-full h-[420px] md:h-[520px]">
+      <Swiper
+        loop={true}
+        autoplay={{ delay: 4000, disableOnInteraction: false }}
+        pagination={{ clickable: true }}
+        navigation={true}
+        modules={[Autoplay, Pagination, Navigation]}
+        className="h-full"
+      >
+        {/* Slide 1 */}
+        <SwiperSlide>
+          <div className="h-full bg-cover bg-center flex items-center justify-center bg-[url('https://i.postimg.cc/bwBW57Rg/steptodown-com571196.jpg')]">
+            <div className="bg-[#2a0e61]/60  text-white  container mx-auto  rounded-xl shadow-lg md:py-20  text-center relative">
+              <div className="absolute top-4 right-4 text-white/70">
+                <FiSun className="text-xl" />
+              </div>
+              <h1 className="text-3xl md:text-5xl font-extrabold bg-gradient-to-r from-pink-400 to-orange-400 bg-clip-text text-transparent">
+                Find Your Perfect Space
+              </h1>
+              <p className="mt-4 text-gray-200 leading-relaxed">
+                Connect with like-minded individuals, discover ideal living situations,
+                and make your housing journey seamless and enjoyable.
+              </p>
+              <div className="mt-8 flex flex-col md:flex-row justify-center gap-4">
+                {btns}
+              </div>
+            </div>
+          </div>
+        </SwiperSlide>
+
+        {/* Slide 2 */}
+        <SwiperSlide>
+          <div className="h-full bg-cover bg-center flex items-center justify-center bg-[url('https://i.postimg.cc/bNY5wyCL/steptodown-com231447.jpg')]">
+            <div className="bg-[#2a0e61]/60  bg-opacity-60 text-white p-8 md:p-12 rounded-xl shadow-lg max-w-3xl text-center">
+              <h2 className="text-3xl md:text-4xl font-bold mb-3">List Your Space with Ease</h2>
+              <p>
+                Have an extra room? Post it in seconds and find a reliable roommate without the hassle.
+              </p>
+              <div className="mt-8 flex flex-col md:flex-row justify-center gap-4">
+               {btns}
+              </div>
+            </div>
+          </div>
+        </SwiperSlide>
+
+        {/* Slide 3 */}
+        <SwiperSlide>
+          <div className="h-full bg-cover bg-center flex items-center justify-center bg-[url('https://i.postimg.cc/7ZGm5fg1/steptodown-com352528.jpg')]">
+            <div className="bg-[#2a0e61]/60  bg-opacity-60 text-white p-8 md:p-12 rounded-xl shadow-lg max-w-3xl text-center">
+              <h2 className="text-3xl md:text-4xl font-bold mb-3">Your Comfort, Our Priority</h2>
+              <p>
+                We value your safety and satisfaction. Experience a seamless roommate finding journey.
+              </p>
+              <div className="mt-8 flex flex-col md:flex-row justify-center gap-4">
+               {btns}
+              </div>
+            </div>
+          </div>
+        </SwiperSlide>
+      </Swiper>
+    </div>
+  );
+};
+
+export default Banner;
