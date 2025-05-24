@@ -5,7 +5,8 @@ import toast from "react-hot-toast";
 
 const RoommateDetails = () => {
   const room = useLoaderData();
-  const [interested, setInterested] = useState(false); // state for button and contact section
+  const [interested, setInterested] = useState(false); 
+  const currentUser = { email: "mehedi.devx@gmail.com" };
   const [count, setCount] = useState(room.interestedCount || 223);
 
   const images =
@@ -93,22 +94,33 @@ const RoommateDetails = () => {
 
       {/* Interested Button */}
       <button
-        onClick={() => {
-          setInterested(true);
-          setCount((prev) => prev + 1);
-           toast.success("🎉 Congratulations! You're now marked as interested.");
-        }}
-        disabled={interested}
-        className={`mt-10 w-full py-3 rounded-xl font-semibold transition 
+  onClick={() => {
+    if (room.email === currentUser.email) {
+      toast.error("❌ You cannot like your own post!");
+      return;
+    }
+
+    if (!interested) {
+      setInterested(true);
+      setCount((prev) => prev + 1);
+      toast.success("🎉 Congratulations! You're now marked as interested.");
+    }
+  }}
+  disabled={interested || room.email === currentUser.email}
+  className={`mt-10 w-full py-3 rounded-xl font-semibold transition 
     ${
-      interested
+      interested || room.email === currentUser.email
         ? "bg-gray-600 cursor-not-allowed"
         : "bg-gradient-to-r from-pink-500 to-purple-500 hover:opacity-90"
     }
   `}
-      >
-        {interested ? "You're Interested!" : "I'm Interested!"}
-      </button>
+>
+  {room.email === currentUser.email
+    ? "You can't like your own post"
+    : interested
+    ? "You're Interested!"
+    : "I'm Interested!"}
+</button>
 
       {/* Contact Info */}
       {interested && (

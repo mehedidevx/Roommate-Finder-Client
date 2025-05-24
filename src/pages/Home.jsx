@@ -9,7 +9,7 @@ import NewFoundRoommate from "./NewFoundRoommate";
 const Home = () => {
   const roommates = useLoaderData();
   return (
-    <div>
+    <div className="bg-white text-black dark:bg-gray-900 min-h-screen">
       <Banner></Banner>
       <NewFoundRoommate roommates={roommates}></NewFoundRoommate>
        <Outlet></Outlet>

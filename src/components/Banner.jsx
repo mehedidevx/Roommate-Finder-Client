@@ -1,10 +1,11 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import { FiSun, FiSearch, FiHome } from 'react-icons/fi';
-import { Link } from 'react-router';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { FiSun, FiSearch, FiHome } from "react-icons/fi";
+import { Link } from "react-router";
+import { Typewriter } from "react-simple-typewriter";
 
 const Banner = () => {
   const btns = [
@@ -39,13 +40,21 @@ const Banner = () => {
 
             {/* Content */}
             <div className="relative z-10 bg-[#2a0e61]/70 text-white p-3 md:p-12 rounded-xl shadow-lg max-w-3xl text-center">
-             
               <h1 className="text-3xl md:text-5xl font-extrabold bg-gradient-to-r from-pink-400 to-orange-400 bg-clip-text text-transparent">
-                Find Your Perfect Space
+                <Typewriter
+                  words={[" Find Your Perfect Space"]}
+                  loop={false}
+                  cursor
+                  cursorStyle="_"
+                  typeSpeed={80}
+                  deleteSpeed={50}
+                  delaySpeed={1000}
+                />
               </h1>
               <p className="mt-4 text-gray-200 leading-relaxed">
-                Connect with like-minded individuals, discover ideal living situations,
-                and make your housing journey seamless and enjoyable.
+                Connect with like-minded individuals, discover ideal living
+                situations, and make your housing journey seamless and
+                enjoyable.
               </p>
               <div className="mt-8 flex flex-col md:flex-row justify-center gap-4">
                 {btns}
@@ -62,9 +71,20 @@ const Banner = () => {
 
             {/* Content */}
             <div className="relative z-10 bg-[#2a0e61]/70 text-white p-8 md:p-12 rounded-xl shadow-lg max-w-3xl text-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-3">List Your Space with Ease</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-3">
+               <Typewriter
+                  words={["List Your Space with Ease"]}
+                  loop={false}
+                  cursor
+                  cursorStyle="_"
+                  typeSpeed={80}
+                  deleteSpeed={50}
+                  delaySpeed={1000}
+                />
+              </h2>
               <p>
-                Have an extra room? Post it in seconds and find a reliable roommate without the hassle.
+                Have an extra room? Post it in seconds and find a reliable
+                roommate without the hassle.
               </p>
               <div className="mt-8 flex flex-col md:flex-row justify-center gap-4">
                 {btns}
@@ -81,9 +101,20 @@ const Banner = () => {
 
             {/* Content */}
             <div className="relative z-10 bg-[#2a0e61]/70 text-white p-8 md:p-12 rounded-xl shadow-lg max-w-3xl text-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-3">Your Comfort, Our Priority</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-3">
+               <Typewriter
+                  words={["Your Comfort, Our Priority"]}
+                  loop={false}
+                  cursor
+                  cursorStyle="_"
+                  typeSpeed={80}
+                  deleteSpeed={50}
+                  delaySpeed={1000}
+                />
+              </h2>
               <p>
-                We value your safety and satisfaction. Experience a seamless roommate finding journey.
+                We value your safety and satisfaction. Experience a seamless
+                roommate finding journey.
               </p>
               <div className="mt-8 flex flex-col md:flex-row justify-center gap-4">
                 {btns}

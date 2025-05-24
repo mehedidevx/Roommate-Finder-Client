@@ -1,6 +1,7 @@
 import React from "react";
 import { useLoaderData, Link } from "react-router-dom";
 import { FaMapMarkerAlt, FaDollarSign, FaBed } from "react-icons/fa";
+import { Typewriter } from "react-simple-typewriter";
 
 const NewFoundRoommate = () => {
   const roommates = useLoaderData();
@@ -11,7 +12,7 @@ const NewFoundRoommate = () => {
     "https://i.postimg.cc/7ZGm5fg1/steptodown-com352528.jpg",
     "https://i.postimg.cc/3NB77Nxm/steptodown-com253798.jpg",
     "https://i.postimg.cc/jdxtcHMX/steptodown-com982481.jpg",
-    "https://i.postimg.cc/X7s3zrh0/steptodown-com291031.jpg"
+    "https://i.postimg.cc/X7s3zrh0/steptodown-com291031.jpg",
   ];
 
   const visibleRoommates = roommates.slice(0, 6);
@@ -19,7 +20,9 @@ const NewFoundRoommate = () => {
   return (
     <section className="py-12 bg-[#411b5f] min-h-150">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-8 text-center text-white">Available Found Roommates</h2>
+        <h2 className="text-3xl font-bold mb-8 text-center text-white">
+          Available Found Roommates
+        </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
           {visibleRoommates.map((room, index) => (
