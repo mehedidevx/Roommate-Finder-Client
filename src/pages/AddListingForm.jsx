@@ -90,7 +90,7 @@ const AddListingForm = () => {
  
           {/* Room Type */}
           <div>
-          console.log(first)
+        
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Room Type
             </label>
