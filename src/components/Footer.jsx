@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <footer className="bg-gradient-to-r from-[#0f0c29] via-[#302b63] to-[#24243e] text-white py-10 ">
-      <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
+      <div className="container  mx-auto px-4 grid md:flex justify-between  grid-cols-1 md:grid-cols-3 gap-8 text-sm">
 
         {/* Contact Info */}
         <div>
@@ -22,7 +22,7 @@ const Footer = () => {
         </div>
 
         {/* Terms & About */}
-        <div>
+        <div className="">
           <h2 className="text-lg font-semibold mb-4">Quick Links</h2>
           <ul className="space-y-2">
             <li>

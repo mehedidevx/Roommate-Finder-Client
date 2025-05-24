@@ -12,7 +12,7 @@ const UpdateRoommate = () => {
     const updatedRoommate = Object.fromEntries(formData.entries());
     console.log(updatedRoommate);
 
-    fetch(`http://localhost:3000/roommates/${roommate._id}`, {
+    fetch(`https://roommate-finder-server-lemon.vercel.app/roommates/${roommate._id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

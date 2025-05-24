@@ -1,8 +1,8 @@
 import React from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { useLoaderData, Link } from "react-router-dom";
 import { FaMapMarkerAlt, FaDollarSign, FaBed } from "react-icons/fa";
 
-const BrowseListings = () => {
+const NewFoundRoommate = () => {
   const roommates = useLoaderData();
 
   const images = [
@@ -14,16 +14,18 @@ const BrowseListings = () => {
     "https://i.postimg.cc/X7s3zrh0/steptodown-com291031.jpg"
   ];
 
+  const visibleRoommates = roommates.slice(0, 6);
+
   return (
-    <section className="py-12 bg-[#290564] min-h-150">
+    <section className="py-12 bg-[#411b5f] min-h-150">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-8 text-center text-white">Browse Listings</h2>
+        <h2 className="text-3xl font-bold mb-8 text-center text-white">New Found Roommates</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
-          {roommates.map((room, index) => (
+          {visibleRoommates.map((room, index) => (
             <div
               key={room._id}
-              className="bg-gradient-to-b from-[#670ab9] to-[#6d05bd] text-white p-4 rounded-2xl shadow-lg w-full"
+              className="bg-gradient-to-b from-[#7405d4] to-[#3D006C] text-white p-4 rounded-2xl shadow-lg w-full"
             >
               <img
                 src={images[index % images.length]}
@@ -51,9 +53,20 @@ const BrowseListings = () => {
             </div>
           ))}
         </div>
+
+        {/* See More Button */}
+        {roommates.length > 6 && (
+          <div className="text-center mt-10">
+            <Link to="/browse">
+              <button className="px-6 py-2 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-xl font-medium hover:opacity-90 transition">
+                See More
+              </button>
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );
 };
 
-export default BrowseListings;
+export default NewFoundRoommate;

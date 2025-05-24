@@ -2,15 +2,15 @@ import React from "react";
 
 const WhyChooseUs = () => {
   return (
-    <section className="py-16 bg-base-100">
+    <section className="py-16 bg-[#551e80]">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-12 text-primary">Why Choose RoomieFind?</h2>
+        <h2 className="text-4xl text-white font-bold text-center mb-12 ">Why Choose RoommateFind?</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Feature 1 */}
-          <div className="card bg-base-200 shadow-xl hover:shadow-2xl transition-shadow duration-300">
+          <div className="card bg-[#eecbcb] shadow-xl hover:shadow-2xl transition-shadow duration-300">
             <div className="card-body items-center text-center">
-              <div className="text-primary mb-4">
+              <div className="text-primary mb-4 ">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
@@ -23,7 +23,7 @@ const WhyChooseUs = () => {
           </div>
           
           {/* Feature 2 */}
-          <div className="card bg-base-200 shadow-xl hover:shadow-2xl transition-shadow duration-300">
+          <div className="card bg-[#e5eecb] shadow-xl hover:shadow-2xl transition-shadow duration-300">
             <div className="card-body items-center text-center">
               <div className="text-primary mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -39,7 +39,7 @@ const WhyChooseUs = () => {
           </div>
           
           {/* Feature 3 */}
-          <div className="card bg-base-200 shadow-xl hover:shadow-2xl transition-shadow duration-300">
+          <div className="card bg-[#cbe7ee] shadow-xl hover:shadow-2xl transition-shadow duration-300">
             <div className="card-body items-center text-center">
               <div className="text-primary mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
