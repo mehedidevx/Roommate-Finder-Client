@@ -44,7 +44,7 @@ const BrowseListings = () => {
                 <span>{room.roomType}</span>
               </div>
               <Link to={`/roommateDetails/${room._id}`}>
-                <button className="w-full mt-4 bg-gradient-to-r from-pink-500 to-purple-500 text-white py-2 rounded-xl font-medium hover:opacity-90 transition">
+                <button className="w-full cursor-pointer mt-4 bg-gradient-to-r from-pink-500 to-purple-500 text-white py-2 rounded-xl font-medium hover:opacity-90 transition">
                   View Details
                 </button>
               </Link>

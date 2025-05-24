@@ -42,13 +42,14 @@ const MyListings = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 min-h-150 text-white">
+    <div className="bg-[#0f1d38]">
+      <div className="container  mx-auto px-4 sm:px-6 lg:px-8 py-10 min-h-150 text-white">
       <div className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4 sm:gap-0">
         <h1 className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400">
           My Listings
         </h1>
         <Link to="/add-listing">
-          <button className="px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-lg shadow hover:opacity-90 transition-all text-sm sm:text-base">
+          <button className="px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-lg shadow hover:opacity-90 transition-all text-sm cursor-pointer sm:text-base">
             ➕ Add New Listing
           </button>
         </Link>
@@ -63,7 +64,7 @@ const MyListings = () => {
             Start by creating your first listing now!
           </p>
           <Link to="/add-listing">
-            <button className="px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-lg shadow hover:opacity-90 transition-all text-sm sm:text-base">
+            <button className="px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-lg shadow hover:opacity-90 transition-all cursor-pointer text-sm sm:text-base">
               ➕ Create Your First Listing
             </button>
           </Link>
@@ -74,7 +75,7 @@ const MyListings = () => {
             <thead>
               <tr className="text-xs sm:text-sm text-purple-300 uppercase tracking-wider">
                 <th className="p-2 sm:p-4">Title</th>
-                <th className="p-2 sm:p-4">Location</th>
+                <th className="p-2 hidden md:block sm:p-4">Location</th>
                 <th className="p-2 sm:p-4">Rent</th>
                 <th className="p-2 sm:p-4">Status</th>
                 <th className="p-2 sm:p-4 text-center">Actions</th>
@@ -89,7 +90,7 @@ const MyListings = () => {
                   <td className="p-2 sm:p-4 text-sm sm:text-base font-semibold">
                     {room.title}
                   </td>
-                  <td className="p-2 sm:p-4 text-sm sm:text-base">
+                  <td className="p-2 sm:p-4 hidden md:block text-sm sm:text-base">
                     {room.location}
                   </td>
                   <td className="p-2 sm:p-4 text-sm sm:text-base">
@@ -98,14 +99,14 @@ const MyListings = () => {
                   <td className="p-2 sm:p-4 text-sm sm:text-base text-green-400">
                     Available
                   </td>
-                  <td className="p-2 sm:p-4 flex justify-center gap-2 sm:gap-4 text-lg">
-                    <Link to={`/roommateDetails/${room._id}`}>
+                  <td className="p-2 sm:p-4  flex flex-col  md:flex-row justify-center items-center  gap-1 md:gap-2 sm:gap-4 text-lg">
+                    <Link className=" border-gray-600 border-2 p-1 rounded-full" to={`/roommateDetails/${room._id}`}>
                       <FaEye className="text-blue-400 cursor-pointer hover:scale-110 transition" />
                     </Link>
-                    <Link to={`/updateRoommate/${room._id}`}>
+                    <Link className="border-gray-600 border-2 p-1 rounded-full" to={`/updateRoommate/${room._id}`}>
                       <FaEdit className="text-yellow-400 cursor-pointer hover:scale-110 transition" />
                     </Link>
-                    <button onClick={() => handleDelete(room._id)}>
+                    <button className="border-gray-600 border-2 p-1 rounded-full" onClick={() => handleDelete(room._id)}>
                       <FaTrash className="text-red-500 cursor-pointer hover:scale-110 transition" />
                     </button>
                   </td>
@@ -115,6 +116,7 @@ const MyListings = () => {
           </table>
         </div>
       )}
+    </div>
     </div>
   );
 };

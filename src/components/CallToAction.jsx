@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 const CallToAction = () => {
   return (
-    <section className="py-16 bg-primary text-primary-content">
+    <section className="py-16 bg-[#060d72] text-primary-content">
       <div className="container mx-auto px-4 text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Get Started?</h2>
         

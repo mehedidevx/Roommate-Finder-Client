@@ -2,11 +2,12 @@ import React, { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
 
 const AddListingForm = () => {
   const { user } = useContext(AuthContext);
   const { register } = useForm();
-
+  const navigate = useNavigate()
   const handleAddRoommate = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -25,13 +26,14 @@ const AddListingForm = () => {
         if (data.insertedId) {
           toast.success("Roommate listing added successfully!");
           form.reset();
+          navigate("/browse")
         }
       });
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-100 to-indigo-200 py-10 px-4">
-      <div className="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-xl">
+    <div className="min-h-screen bg-[#140847] py-10 px-4">
+      <div className="max-w-4xl mx-auto bg-[#fefdff]  p-8 rounded-2xl shadow-xl">
         <h2 className="text-3xl font-bold text-indigo-700 mb-6 text-center">
           Add Roommate Listing
         </h2>
@@ -166,7 +168,7 @@ const AddListingForm = () => {
           <div className="text-center pt-4">
             <button
               type="submit"
-              className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-2 rounded-lg transition duration-300"
+              className="bg-indigo-600 cursor-pointer hover:bg-indigo-700 text-white font-semibold px-6 py-2 rounded-lg transition duration-300"
             >
               Add Listing
             </button>

@@ -19,7 +19,7 @@ const NewFoundRoommate = () => {
   return (
     <section className="py-12 bg-[#411b5f] min-h-150">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-8 text-center text-white">New Found Roommates</h2>
+        <h2 className="text-3xl font-bold mb-8 text-center text-white">Available Found Roommates</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
           {visibleRoommates.map((room, index) => (
@@ -46,7 +46,7 @@ const NewFoundRoommate = () => {
                 <span>{room.roomType}</span>
               </div>
               <Link to={`/roommateDetails/${room._id}`}>
-                <button className="w-full mt-4 bg-gradient-to-r from-pink-500 to-purple-500 text-white py-2 rounded-xl font-medium hover:opacity-90 transition">
+                <button className="w-full mt-4 bg-gradient-to-r from-pink-500 to-purple-500 text-white py-2 rounded-xl font-medium hover:opacity-90 transition cursor-pointer">
                   View Details
                 </button>
               </Link>
