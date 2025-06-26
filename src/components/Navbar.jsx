@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import {
   FiHome,
@@ -10,13 +10,15 @@ import {
   FiX,
 } from "react-icons/fi";
 import { AuthContext } from "../providers/AuthProvider";
-import { RiMenuFold2Line } from "react-icons/ri";
 import { FcAbout } from "react-icons/fc";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [dashboardOpen, setDashboardOpen] = useState(false);
+
+  const dropdownRef = useRef(null);
 
   const handleLogout = async () => {
     try {
@@ -26,6 +28,26 @@ const Navbar = () => {
       console.error("Logout failed:", error);
     }
   };
+
+  // Outside click handler to close dashboard dropdown
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target)
+      ) {
+        setDashboardOpen(false);
+      }
+    };
+    if (dashboardOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dashboardOpen]);
 
   const navLinkClass = ({ isActive }) =>
     `flex items-center gap-1 px-2 py-1 rounded ${
@@ -72,13 +94,27 @@ const Navbar = () => {
               </NavLink>
             </li>
 
-            {/* Dashboard Dropdown - show only if user logged in */}
+            {/* Dashboard Dropdown - Click to toggle */}
             {user && (
-              <li className="relative group">
-                <div className="flex items-center gap-1 px-2 py-1 rounded cursor-pointer hover:bg-white/10 hover:text-purple-400">
+              <li
+                className="relative"
+                ref={dropdownRef}
+              >
+                <button
+                  onClick={() => setDashboardOpen((prev) => !prev)}
+                  className={`flex items-center gap-1 px-2 py-1 rounded cursor-pointer ${
+                    dashboardOpen
+                      ? "bg-white/20 text-purple-400"
+                      : "hover:bg-white/10 hover:text-purple-400"
+                  }`}
+                  aria-expanded={dashboardOpen}
+                  aria-haspopup="true"
+                >
                   <span>📂 Dashboard</span>
                   <svg
-                    className="w-4 h-4"
+                    className={`w-4 h-4 transition-transform duration-200 ${
+                      dashboardOpen ? "rotate-180" : "rotate-0"
+                    }`}
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
@@ -88,53 +124,61 @@ const Navbar = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                </div>
+                </button>
 
                 {/* Dropdown menu */}
-                <ul className="absolute hidden group-hover:block bg-[#1f1b3a] text-white p-2 rounded-md mt-2 shadow-md min-w-[180px]">
-                  <li>
-                    <NavLink
-                      to="/add-listing"
-                      className={({ isActive }) =>
-                        `block px-3 py-1 rounded ${
-                          isActive
-                            ? "bg-white/20 text-purple-400"
-                            : "hover:bg-white/10 hover:text-purple-400"
-                        }`
-                      }
-                    >
-                      ➕ Add Listing
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/myListing"
-                      className={({ isActive }) =>
-                        `block px-3 py-1 rounded ${
-                          isActive
-                            ? "bg-white/20 text-purple-400"
-                            : "hover:bg-white/10 hover:text-purple-400"
-                        }`
-                      }
-                    >
-                      📑 My Listings
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      to="/my-profile"
-                      className={({ isActive }) =>
-                        `block px-3 py-1 rounded ${
-                          isActive
-                            ? "bg-white/20 text-purple-400"
-                            : "hover:bg-white/10 hover:text-purple-400"
-                        }`
-                      }
-                    >
-                      👤 My Profile
-                    </NavLink>
-                  </li>
-                </ul>
+                {dashboardOpen && (
+                  <ul
+                    className="absolute bg-[#1f1b3a] text-white p-2 rounded-md mt-10 shadow-md min-w-[180px] z-50"
+                    role="menu"
+                  >
+                    <li>
+                      <NavLink
+                        to="/add-listing"
+                        className={({ isActive }) =>
+                          `block px-3 py-1 rounded ${
+                            isActive
+                              ? "bg-white/20 text-purple-400"
+                              : "hover:bg-white/10 hover:text-purple-400"
+                          }`
+                        }
+                        onClick={() => setDashboardOpen(false)}
+                      >
+                        ➕ Add Listing
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/myListing"
+                        className={({ isActive }) =>
+                          `block px-3 py-1 rounded ${
+                            isActive
+                              ? "bg-white/20 text-purple-400"
+                              : "hover:bg-white/10 hover:text-purple-400"
+                          }`
+                        }
+                        onClick={() => setDashboardOpen(false)}
+                      >
+                        📑 My Listings
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/my-profile"
+                        className={({ isActive }) =>
+                          `block px-3 py-1 rounded ${
+                            isActive
+                              ? "bg-white/20 text-purple-400"
+                              : "hover:bg-white/10 hover:text-purple-400"
+                          }`
+                        }
+                        onClick={() => setDashboardOpen(false)}
+                      >
+                        👤 My Profile
+                      </NavLink>
+                    </li>
+                  </ul>
+                )}
               </li>
             )}
           </ul>
