@@ -11,6 +11,7 @@ import {
 } from "react-icons/fi";
 import { AuthContext } from "../providers/AuthProvider";
 import { RiMenuFold2Line } from "react-icons/ri";
+import { FcAbout } from "react-icons/fc";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -41,7 +42,7 @@ const Navbar = () => {
     }`;
 
   return (
-    <div className="sticky top-0 z-50  bg-gradient-to-r from-[#0f0c29] via-[#302b63] to-[#1a2a6c] shadow-md backdrop-blur-md  ">
+    <div className="sticky top-0 z-50 bg-gradient-to-r from-[#0f0c29] via-[#302b63] to-[#1a2a6c] shadow-md backdrop-blur-md">
       <div className="navbar container mx-auto text-white flex justify-between items-center py-2 px-4">
         {/* Logo */}
         <div className="navbar-start">
@@ -65,35 +66,86 @@ const Navbar = () => {
                 <FiSearch /> Browse
               </NavLink>
             </li>
+            <li>
+              <NavLink to="/aboutUs" className={navLinkClass}>
+                <FcAbout /> About Us
+              </NavLink>
+            </li>
+
+            {/* Dashboard Dropdown - show only if user logged in */}
             {user && (
-              <>
-                <li>
-                  <NavLink to="/add-listing" className={navLinkClass}>
-                    <span className="font-semibold">➕ Add Listing</span>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/myListing" className={navLinkClass}>
-                    <span className="flex items-center justify-center gap-1 font-semibold">
-                      <RiMenuFold2Line /> My Listings
-                    </span>
-                  </NavLink>
-                </li>
-              </>
+              <li className="relative group">
+                <div className="flex items-center gap-1 px-2 py-1 rounded cursor-pointer hover:bg-white/10 hover:text-purple-400">
+                  <span>📂 Dashboard</span>
+                  <svg
+                    className="w-4 h-4"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M5.23 7.21a.75.75 0 011.06.02L10 10.939l3.71-3.71a.75.75 0 111.06 1.061l-4.24 4.243a.75.75 0 01-1.06 0L5.25 8.29a.75.75 0 01-.02-1.06z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+
+                {/* Dropdown menu */}
+                <ul className="absolute hidden group-hover:block bg-[#1f1b3a] text-white p-2 rounded-md mt-2 shadow-md min-w-[180px]">
+                  <li>
+                    <NavLink
+                      to="/add-listing"
+                      className={({ isActive }) =>
+                        `block px-3 py-1 rounded ${
+                          isActive
+                            ? "bg-white/20 text-purple-400"
+                            : "hover:bg-white/10 hover:text-purple-400"
+                        }`
+                      }
+                    >
+                      ➕ Add Listing
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/myListing"
+                      className={({ isActive }) =>
+                        `block px-3 py-1 rounded ${
+                          isActive
+                            ? "bg-white/20 text-purple-400"
+                            : "hover:bg-white/10 hover:text-purple-400"
+                        }`
+                      }
+                    >
+                      📑 My Listings
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/my-profile"
+                      className={({ isActive }) =>
+                        `block px-3 py-1 rounded ${
+                          isActive
+                            ? "bg-white/20 text-purple-400"
+                            : "hover:bg-white/10 hover:text-purple-400"
+                        }`
+                      }
+                    >
+                      👤 My Profile
+                    </NavLink>
+                  </li>
+                </ul>
+              </li>
             )}
           </ul>
         </div>
 
         {/* Right Buttons */}
         <div className="navbar-end hidden md:flex gap-2 items-center">
-          <div className="">
-            <label className="swap swap-rotate ">
-              {/* this hidden checkbox controls the state */}
-              <input
-                type="checkbox"
-                className="theme-controller"
-                value="black"
-              />
+          <div>
+            <label className="swap swap-rotate">
+              {/* hidden checkbox controls the state */}
+              <input type="checkbox" className="theme-controller" value="black" />
 
               {/* sun icon */}
               <svg
@@ -114,6 +166,7 @@ const Navbar = () => {
               </svg>
             </label>
           </div>
+
           {!user ? (
             <>
               <Link
@@ -177,6 +230,14 @@ const Navbar = () => {
           >
             <FiSearch className="inline" /> Browse
           </NavLink>
+          <NavLink
+            to="/aboutUs"
+            onClick={() => setMenuOpen(false)}
+            className={mobileNavLinkClass}
+          >
+            <FcAbout className="inline" /> About Us
+          </NavLink>
+
           {user && (
             <>
               <NavLink
@@ -192,6 +253,13 @@ const Navbar = () => {
                 className={mobileNavLinkClass}
               >
                 📂 My Listings
+              </NavLink>
+              <NavLink
+                to="/my-profile"
+                onClick={() => setMenuOpen(false)}
+                className={mobileNavLinkClass}
+              >
+                👤 My Profile
               </NavLink>
             </>
           )}
@@ -214,28 +282,15 @@ const Navbar = () => {
               </NavLink>
             </>
           ) : (
-            <>
-              <button
-                onClick={handleLogout}
-                className="block hover:text-red-400 px-2 py-1 rounded"
-              >
-                <FiLogOut className="inline" /> Logout
-              </button>
-              <button
-                onClick={() => {
-                  setMenuOpen(false);
-                  navigate("/my-profile");
-                }}
-                className="flex items-center gap-2 px-2 py-1 rounded hover:bg-white/10"
-              >
-                <img
-                  src={user?.photoURL || "https://i.ibb.co/4pDNDk1/avatar.png"}
-                  alt="Profile"
-                  className="w-8 h-8 rounded-full cursor-pointer border border-blue-400"
-                />
-                <span>{user?.displayName || "Profile"}</span>
-              </button>
-            </>
+            <button
+              onClick={() => {
+                handleLogout();
+                setMenuOpen(false);
+              }}
+              className="block hover:text-red-400 px-2 py-1 rounded"
+            >
+              <FiLogOut className="inline" /> Logout
+            </button>
           )}
         </div>
       )}
