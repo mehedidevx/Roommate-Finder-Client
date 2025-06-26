@@ -22,9 +22,9 @@ const MainLayOut = () => {
 
   return (
     <div>
-      <header>
-        <Navbar />
-      </header>
+
+        <Navbar  />
+
       <main>
         <Outlet />
       </main>

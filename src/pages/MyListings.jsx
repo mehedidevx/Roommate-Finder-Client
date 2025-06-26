@@ -2,11 +2,16 @@ import { Link, useLoaderData } from "react-router-dom";
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../providers/AuthProvider";
 
 const MyListings = () => {
-  const initialRoommates = useLoaderData();
-  const [roommates, setRoommates] = useState(initialRoommates);
+   const initialRoommates = useLoaderData();
+  const { user } = useContext(AuthContext); // ইউজারের ইমেইল পাওয়ার জন্য
+  const [roommates, setRoommates] = useState(
+    initialRoommates.filter(room => room.email === user?.email)
+  );
+
 
   const handleDelete = (_id) => {
     Swal.fire({
