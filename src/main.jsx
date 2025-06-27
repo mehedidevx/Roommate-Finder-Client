@@ -20,6 +20,9 @@ import RoommateDetails from "./pages/RoommateDetails.jsx";
 import UpdateRoommate from "./pages/UpdateRoommate.jsx";
 import NewFoundRoommate from "./pages/NewFoundRoommate.jsx";
 import AboutUs from "./pages/AboutUs.jsx";
+import Dashboard from "./components/Dashboard.jsx";
+import Contact from "./pages/Contact.jsx";
+import Support from "./pages/Support.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,9 +31,9 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-         loader: () => fetch("https://roommate-finder-server-lemon.vercel.app/roommates"),
+        loader: () =>
+          fetch("https://roommate-finder-server-lemon.vercel.app/roommates"),
         element: <Home />,
-       
       },
       {
         path: "/login",
@@ -42,16 +45,63 @@ const router = createBrowserRouter([
       },
       {
         path: "/browse",
-        loader: () => fetch("https://roommate-finder-server-lemon.vercel.app/roommates"),
+        loader: () =>
+          fetch("https://roommate-finder-server-lemon.vercel.app/roommates"),
         element: <BrowseListings></BrowseListings>,
       },
       {
         path: "/aboutUs",
-        element: <AboutUs></AboutUs>
+        element: <AboutUs></AboutUs>,
+      },
+      {
+        path:"/contact",
+        element: <Contact></Contact>
+      },
+      {
+        path:"/support",
+        element: <Support></Support>
+      },
+      {
+        path: "/dashboard",
+        element: <Dashboard></Dashboard>,
+        children: [
+         
+          {
+            path: "add-listing",
+            element: (
+              <PrivateRoute>
+                
+                <AddListingForm></AddListingForm>
+              </PrivateRoute>
+            ),
+          },
+           {
+            path: "myListing",
+            loader: () =>
+              fetch(
+                "https://roommate-finder-server-lemon.vercel.app/roommates"
+              ),
+            element: (
+              <PrivateRoute>
+               
+                <MyListings></MyListings>
+              </PrivateRoute>
+            ),
+          },
+          {
+            path: "my-profile",
+            element: (
+              <PrivateRoute>
+                <MyProfile></MyProfile>
+              </PrivateRoute>
+            ),
+          },
+        ],
       },
       {
         path: "/myListing",
-        loader: () => fetch("https://roommate-finder-server-lemon.vercel.app/roommates"),
+        loader: () =>
+          fetch("https://roommate-finder-server-lemon.vercel.app/roommates"),
         element: (
           <PrivateRoute>
             {" "}
@@ -59,6 +109,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+
       {
         path: "/add-listing",
         element: (
@@ -72,6 +123,7 @@ const router = createBrowserRouter([
         path: "*",
         element: <NotFound />,
       },
+
       {
         path: "/my-profile",
         element: (
@@ -83,7 +135,9 @@ const router = createBrowserRouter([
       {
         path: "/roommateDetails/:id",
         loader: ({ params }) =>
-          fetch(`https://roommate-finder-server-lemon.vercel.app/roommates/${params.id}`),
+          fetch(
+            `https://roommate-finder-server-lemon.vercel.app/roommates/${params.id}`
+          ),
         element: (
           <PrivateRoute>
             <RoommateDetails></RoommateDetails>
@@ -93,7 +147,9 @@ const router = createBrowserRouter([
       {
         path: "/updateRoommate/:id",
         loader: ({ params }) =>
-          fetch(`https://roommate-finder-server-lemon.vercel.app/roommates/${params.id}`),
+          fetch(
+            `https://roommate-finder-server-lemon.vercel.app/roommates/${params.id}`
+          ),
         element: (
           <PrivateRoute>
             <UpdateRoommate></UpdateRoommate>

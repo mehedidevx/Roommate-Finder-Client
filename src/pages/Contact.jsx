@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const AboutUs = () => {
+const Contact = () => {
   return (
     <section className="py-12 bg-[#2a0640]">
       <div className="container mx-auto px-4">
@@ -11,7 +11,7 @@ const AboutUs = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          About Us
+          Contact Us
         </motion.h2>
 
         <motion.div
@@ -21,13 +21,16 @@ const AboutUs = () => {
           transition={{ duration: 1 }}
         >
           <p className="mb-4">
-            <strong>Roommate Finder</strong> is a community-driven platform that helps people find the perfect roommate quickly and securely. Whether you are a student, a job holder, or someone moving to a new city, our goal is to make your search for shared accommodation hassle-free.
+            Have questions or need assistance? We're here to help! Reach out to our team anytime.
           </p>
           <p className="mb-4">
-            We believe that finding a compatible roommate shouldn't be stressful. Our platform offers verified listings, secure communication, and tools to connect people with similar interests and living preferences.
+            <strong>Email:</strong> support@roommatefinder.com
+          </p>
+          <p className="mb-4">
+            <strong>Phone:</strong> +880-123-456789
           </p>
           <p>
-            Built with ❤️ using modern technologies like React.js, Firebase, and Tailwind CSS, our mission is to create a safe, reliable, and user-friendly space for those seeking shared living arrangements.
+            Our team is available from <strong>9 AM to 6 PM (GMT+6)</strong> every day.
           </p>
         </motion.div>
       </div>
@@ -35,4 +38,4 @@ const AboutUs = () => {
   );
 };
 
-export default AboutUs;
+export default Contact;
